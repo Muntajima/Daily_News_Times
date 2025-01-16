@@ -1,4 +1,6 @@
-
+import sub1 from '../../assets/Images/sub1.webp';
+import sub2 from '../../assets/Images/sub2.jpeg';
+import sub3 from '../../assets/Images/sub4.jpg';
 
 const Subcription = () => {
     return (
@@ -15,7 +17,7 @@ const Subcription = () => {
                         <div
                             className="absolute w-full h-full backface-hidden [backface-visibility:hidden]">
                             <img
-                                src="https://img.freepik.com/free-photo/social-media-marketing-concept-marketing-with-applications_23-2150063136.jpg?t=st=1728142095~exp=1728145695~hmac=01edb1d4b68f37689510f834a442804bd4fb7bf68d8f795d7d30f7cc87f79a8b&w=996"
+                                src={sub1}
                                 alt="animated_card"
                                 className="w-full h-full cursor-pointer object-cover rounded-lg shadow-lg"
                             />
@@ -49,7 +51,7 @@ const Subcription = () => {
                         <div
                             className="absolute w-full h-full backface-hidden [backface-visibility:hidden]">
                             <img
-                                src="https://img.freepik.com/free-photo/social-media-marketing-concept-marketing-with-applications_23-2150063136.jpg?t=st=1728142095~exp=1728145695~hmac=01edb1d4b68f37689510f834a442804bd4fb7bf68d8f795d7d30f7cc87f79a8b&w=996"
+                                src={sub2}
                                 alt="animated_card"
                                 className="w-full h-full cursor-pointer object-cover rounded-lg shadow-lg"
                             />
@@ -59,15 +61,16 @@ const Subcription = () => {
                         {/* Back Side */}
                         <div
                             className="absolute w-full h-full bg-white rounded-lg shadow-lg [transform:rotateY(180deg)] [backface-visibility:hidden] p-[25px]">
-                                <button className="text-sm bg-blue-300 px-4">Free For 1 Month</button>
-                            <h2 className="text-[1.2rem] font-semibold text-gray-800 mb-4 mt-4">Premium Individual</h2>
+                                <button className="text-sm bg-yellow-200 px-4">$14.99 Per Month</button>
+
+                            <h2 className="text-[1.2rem] font-semibold text-gray-800 mb-4 mt-4">Premium Duo</h2>
                             <p className="text-gray-600"><ul className="list-disc">
-                                <li>1 Premium account</li>
+                                <li>2 Premium account</li>
                                 <li>Cancle anytime</li>
-                                <li>15 hours/month of listening time from our audiobooks subscriber catalog</li>
+                                <li>35 hours/month of listening time from our audiobooks subscriber catalog</li>
                                 </ul></p>
                             <a href="https://zenui.net"
-                                className="inline-block mt-12 text-black hover:underline bg-blue-300 px-8 rounded-full">Try Free For 1 Month</a>
+                                className="inline-block mt-12 text-black hover:underline bg-yellow-200 px-8 rounded-full">Get Premium Duo</a>
                         </div>
                     </div>
                 </div>
@@ -84,7 +87,7 @@ const Subcription = () => {
                         <div
                             className="absolute w-full h-full backface-hidden [backface-visibility:hidden]">
                             <img
-                                src="https://img.freepik.com/free-photo/social-media-marketing-concept-marketing-with-applications_23-2150063136.jpg?t=st=1728142095~exp=1728145695~hmac=01edb1d4b68f37689510f834a442804bd4fb7bf68d8f795d7d30f7cc87f79a8b&w=996"
+                                src={sub3}
                                 alt="animated_card"
                                 className="w-full h-full cursor-pointer object-cover rounded-lg shadow-lg"
                             />
@@ -94,15 +97,17 @@ const Subcription = () => {
                         {/* Back Side */}
                         <div
                             className="absolute w-full h-full bg-white rounded-lg shadow-lg [transform:rotateY(180deg)] [backface-visibility:hidden] p-[25px]">
-                                <button className="text-sm bg-blue-300 px-4">Free For 1 Month</button>
-                            <h2 className="text-[1.2rem] font-semibold text-gray-800 mb-4 mt-4">Premium Individual</h2>
+                                <button className="text-sm bg-pink-300 px-4">$16.99 Per Month</button>
+                            <h2 className="text-[1.2rem] font-semibold text-gray-800 mb-4 mt-4">Premium Family</h2>
                             <p className="text-gray-600"><ul className="list-disc">
-                                <li>1 Premium account</li>
+                                <li>Up to 6 Premium or Kids account</li>
+                                <li>Block explicit music</li>
+                                <li>Access to Spotify Kids</li>
                                 <li>Cancle anytime</li>
-                                <li>15 hours/month of listening time from our audiobooks subscriber catalog</li>
+                                <li>35 hours/month of listening time from our audiobooks subscriber catalog</li>
                                 </ul></p>
                             <a href="https://zenui.net"
-                                className="inline-block mt-12 text-black hover:underline bg-blue-300 px-8 rounded-full">Try Free For 1 Month</a>
+                                className="inline-block mt-12 text-black hover:underline bg-pink-300 px-8 rounded-full">Get Premium Family</a>
                         </div>
                     </div>
                 </div>
