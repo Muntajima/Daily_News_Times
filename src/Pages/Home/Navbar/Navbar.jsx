@@ -29,10 +29,10 @@ const Navbar = () => {
 
     const links = <>
         <li><NavLink to='/' className='btn mr-2'>Home</NavLink></li>
-        <li><NavLink to='/allItems' className='btn mr-2'>Add Articles</NavLink></li>
+        <li><NavLink to='/add-article' className='btn mr-2'>Add Articles</NavLink></li>
         <NavLink to={'/addItems'} className='btn mr-2'>All Articles</NavLink>
         <NavLink to={'/category'} className='btn mr-2'>Subcription</NavLink>
-        <NavLink to={'/contact-us'} className='btn mr-2'>Dashboard</NavLink>
+        <NavLink to={'/dashboard'} className='btn mr-2'>Dashboard</NavLink>
     </>
 
     return (
@@ -40,18 +40,18 @@ const Navbar = () => {
             <div className="navbar bg-base-100 fixed z-10 top-2 start-2">
                 <div className="navbar-start">
                     <ul className="flex gap-2">
-                        <li><a href=""><FaFacebook/></a></li>
-                        <li><a href=""><FaGithub/></a></li>
-                        <li><a href=""><FaLinkedin/></a></li>
+                        <li><a href=""><FaFacebook /></a></li>
+                        <li><a href=""><FaGithub /></a></li>
+                        <li><a href=""><FaLinkedin /></a></li>
                     </ul>
-                
+
                 </div>
                 <div className="navbar-center">
-                <img src={name} className="w-72" />
+                    <img src={name} className="w-72" />
                 </div>
                 <div className="navbar-end">
                     <button className="btn btn-ghost btn-circle">
-                       <Link to='/contact-us'><FaPhone/></Link> 
+                        <Link to='/contact-us'><FaPhone /></Link>
                     </button>
                 </div>
             </div>
@@ -91,50 +91,35 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                   <div>
-                   {
-                         
-
-                    }
-                   </div>
                     <div>
-                    {
-                        user &&
-                        <div className="dropdown">
-                            <div className="relative group">
-                                <img src={user?.photoURL}
-                                    tabIndex={0} role="button"
-                                    className="w-10 h-10 rounded-full mr-4"
-                                />
+                    {user &&
+          <div className="text-black pr-2 relative group">
+            <img
+              src={user?.photoURL}
+              className='w-10 h-10 rounded-full cursor-pointer'
+              
+            />
+            <div className="absolute bottom-1 right-12 bg-gray-800 text-white text-sm px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
+              {user?.displayName || "No Display Name"}
+            </div>
 
-                                <div className="absolute bottom-1 right-16 bg-gray-600 text-white text-sm px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
-                                    {user?.displayName || "No Display Name"}
-                                </div>
-                            </div>
-                            {/* <ul
-                                tabIndex={0}
-                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                                <li><Link to='/addItems'>Add Lost & Found Item</Link></li>
-                                <li><Link>All recover Items</Link></li>
-                                <li><Link>Manage My Items</Link></li>
-                            </ul> */}
-                        </div>
-
-                    }
-                </div>
+          </div>
+        }
+                    </div>
+                    
 
                     {
-                    user ? <>
-                        <button onClick={handleLogout} className="btn mr-6">Logout</button>
-                    </>
-                        :
-                        <>
-                            <Link to='/signin'>
-                                <button className="btn mr-8">SignIn</button>
-                            </Link>
-                            <Link to='/signup'><button className="btn btn-ghost">SignUp</button></Link>
+                        user ? <>
+                            <button onClick={handleLogout} className="btn mr-6">Logout</button>
                         </>
-                }
+                            :
+                            <>
+                                <Link to='/signin'>
+                                    <button className="btn mr-8">SignIn</button>
+                                </Link>
+                                <Link to='/signup'><button className="btn btn-ghost">SignUp</button></Link>
+                            </>
+                    }
 
                     <div>
                         <input onClick={handleTheme} type="checkbox" className="toggle mr-8" defaultChecked />

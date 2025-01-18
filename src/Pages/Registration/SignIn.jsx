@@ -4,6 +4,7 @@ import loginLottie from '../../assets/Lotties/login.json'
 import { useContext } from "react";
 import AuthContext from "../../Context/AuthContext";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 
 const SignIn = () => {
@@ -12,10 +13,11 @@ const SignIn = () => {
     }
 
     const { googleLogin, signIn, setUser } = useContext(AuthContext);
+    const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
     const location = useLocation();
 
-    const from = location.state || '/'
+    const from = location.state?.from?.pathname || '/'
 
     const handleLogin = (e) =>{
         e.preventDefault();
@@ -27,7 +29,7 @@ const SignIn = () => {
         .then(result =>{
             setUser(result.user)
             console.log(result.user)
-            navigate(from)
+            navigate(from, {replace: true});
             Swal.fire({
                 title: "Sweet!",
                 text: "You are our authorized user",
@@ -43,6 +45,23 @@ const SignIn = () => {
               console.log(error.message)
         })
 
+    }
+    const handleGoogleLogin = (e) =>{
+        e.preventDefault();
+        googleLogin()
+        .then(result =>{
+            console.log(result.user);
+            const userInfo = {
+                email: result.user?.email,
+                name: result.user?.displayName,
+                photoURL: result.user?.photoURL
+            }
+            axiosPublic.post('users', userInfo)
+            .then(res =>{
+                console.log(res.data);
+                navigate('/')
+            })
+        })
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -87,7 +106,7 @@ const SignIn = () => {
                                     Register
                                 </Link>
                             </p>
-                            <Link onClick={googleLogin} className='btn btn-outline bg-blue-300 text-black w-36 mx-auto my-8 font-semibold'> Google only</Link>
+                            <Link onClick={handleGoogleLogin} className='btn btn-outline bg-blue-300 text-black w-36 mx-auto my-8 font-semibold'> Google only</Link>
                 </div>
             </div>
         </div>
