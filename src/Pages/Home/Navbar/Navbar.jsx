@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
-import logo from '../../../assets/logonews.jpg'
-import name from '../../../assets/DailyNewsTimes.png'
+import logo from '../../../assets/Images/logonews.jpg'
+import name from '../../../assets/Images/DailyNewsTimes.png'
 import { useContext, useEffect, useState } from "react";
 import { FaFacebook, FaGithub, FaLinkedin, FaPhone } from "react-icons/fa";
 import AuthContext from "../../../Context/AuthContext";
@@ -37,7 +37,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <div className="navbar bg-base-100 fixed z-10 top-2 start-2">
+            <div className="max-w-7xl mx-auto navbar bg-base-100 fixed z-10 top-0">
                 <div className="navbar-start">
                     <ul className="flex gap-2">
                         <li><a href=""><FaFacebook /></a></li>
@@ -55,7 +55,7 @@ const Navbar = () => {
                     </button>
                 </div>
             </div>
-            <div className="navbar bg-base-100 border-b fixed z-10 top-16 start-1">
+            <div className="max-w-7xl mx-auto navbar bg-base-100 border-b fixed z-10 top-16 start-">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

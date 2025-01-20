@@ -32,7 +32,6 @@ const Plan = () => {
                     </div>
                 </div>
             </Parallax>
-            <HomeNewsCard />
         </div >
     );
 };
