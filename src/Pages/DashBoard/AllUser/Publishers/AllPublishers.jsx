@@ -2,8 +2,6 @@ import { useState } from "react";
 import { imageUpload } from "../../../APIs/utils";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import ErrorPage from "../../../Error/ErrorPage";
-
 
 const AllPublishers = () => {
     const [publisherName, setPublisherName] = useState("");

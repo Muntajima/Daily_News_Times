@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 import AuthContext from './AuthContext';
 import { auth } from '../firebase/firebase.init';
 import { useEffect, useState } from 'react';
+import useAxiosPublic from '../Pages/hooks/useAxiosPublic';
 //import useAxiosPublic from '../Pages/hooks/useAxiosPublic';
 //import axios from 'axios';
 
@@ -12,7 +13,8 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    //const axiosPublic = useAxiosPublic();
+    const [isAdmin, setIsAdmin] = useState(false);
+    const axiosPublic = useAxiosPublic();
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -36,6 +38,28 @@ const AuthProvider = ({ children }) => {
     const updateUserProfile = (updatedData) => {
         return updateProfile(auth.currentUser, updatedData);
     }
+
+    useEffect(() =>{
+        const checkAdmin = async() =>{
+            if(user?.email){
+                setLoading(true);
+            }
+            try{
+                const response = await axiosPublic.get('/adminUser', {
+                    params: {email: user.email}
+                })
+                setIsAdmin(response.data.role === 'admin')
+
+            }
+            catch (error) {
+                console.error("Error verifying admin status:", error);
+              }
+              finally {
+                setLoading(false);
+              }
+        };
+        checkAdmin();
+    }, [user])
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -89,7 +113,8 @@ const AuthProvider = ({ children }) => {
         googleLogin,
         signIn,
         userLogout,
-        updateUserProfile
+        updateUserProfile,
+        isAdmin
     }
     return (
         <AuthContext.Provider value={authInfo}>

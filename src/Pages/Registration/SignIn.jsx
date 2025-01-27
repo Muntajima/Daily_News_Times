@@ -55,6 +55,7 @@ const SignIn = () => {
                 email: result.user?.email,
                 name: result.user?.displayName,
                 photoURL: result.user?.photoURL,
+                role: result.user?.role,
                 lastLoginAt: result.user?.metadata.lastLoginAt,
                 lastSignInTime: result.user?.metadata.lastSignInTime
             }

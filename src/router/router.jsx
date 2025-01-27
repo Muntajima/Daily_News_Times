@@ -17,6 +17,10 @@ import AllPublishers from "../Pages/DashBoard/AllUser/Publishers/AllPublishers";
 import AllNews from "../Pages/Home/AllNews/AllNews";
 import Details from "../Pages/Details/Details";
 import Payment from "../Pages/Payment/Payment";
+import AdminHome from "../Pages/DashBoard/AllUser/AdminHome/AdminHome";
+//import AdminRouter from "./AdminRouter";
+//import AdminRouter from "./AdminRouter";
+
 
 const router = createBrowserRouter([
   {
@@ -67,9 +71,14 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     children: [
       {
-        path: 'home',
-        element: <MainLayout />
+        index: true,
+        element: <AdminHome/>
       },
+      {
+        path: 'home',
+        element: <MainLayout />,
+      },
+      
       {
         path: 'alluser',
         element: <AllUser />

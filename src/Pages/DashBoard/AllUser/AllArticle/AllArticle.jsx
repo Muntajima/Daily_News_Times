@@ -4,6 +4,9 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import AuthContext from "../../../../Context/AuthContext";
+import { MdDeleteForever } from "react-icons/md";
+import { FcApprove } from "react-icons/fc";
+import { FcDisapprove } from "react-icons/fc";
 
 const AllArticle = () => {
     const queryClient = useQueryClient();
@@ -12,7 +15,7 @@ const AllArticle = () => {
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
-  
+  console.log(user)
 
   // Fetch all articles
   const { data: news = [] } = useQuery({
@@ -22,6 +25,7 @@ const AllArticle = () => {
         return data;
   }, 
   });
+  console.log(news)
 
   // Approve an article
   const approveArticle = async (id) => {
@@ -83,7 +87,7 @@ const AllArticle = () => {
               <th>Posted Date</th>
               <th>Status</th>
               <th>Publisher</th>
-              <th>Actions</th>
+              <th>Actions [Approve  Decline  Delete]</th>
             </tr>
           </thead>
           <tbody>
@@ -94,33 +98,33 @@ const AllArticle = () => {
                 <td>{article.authorName}</td>
                 <td>{article.authorEmail}</td>
                 <td>
-                  <img src={user?.photoURL} alt="Author" className="w-12 h-12 rounded-full" />
+                  <img src={article?.authorPhoto} alt="Author" className="w-10 h-10 rounded-full object-cover" />
                 </td>
-                <td>{new Date(article.postedDate).toLocaleDateString()}</td>
+                <td>{new Date(article.date).toLocaleDateString()}</td>
                 <td>{article.status}</td>
                 <td>{article.publisher}</td>
-                <td className="flex gap-2">
+                <td className="flex">
                   <button
                     onClick={() => approveArticle(article._id)}
-                    className="btn btn-success btn-sm"
+                    className="text-3xl pr-2"
                   >
-                    Approve
+                    <FcApprove/>
                   </button>
                   <button
                     onClick={() => setSelectedArticle(article._id)}
-                    className="btn btn-warning btn-sm"
+                    className="text-3xl pr-2"
                   >
-                    Decline
+                    <FcDisapprove/>
                   </button>
                   <button
                     onClick={() => deleteArticle(article._id)}
-                    className="btn btn-error btn-sm"
+                    className="text-3xl"
                   >
-                    Delete
+                  <MdDeleteForever/>
                   </button>
                   <button
                     onClick={() => makePremium(article._id)}
-                    className="btn btn-primary btn-sm"
+                    className="btn btn-accent btn-sm"
                   >
                     Make Premium
                   </button>

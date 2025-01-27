@@ -216,6 +216,19 @@ const AddArticle = () => {
                             required
                         />
                     </div>
+                    <div className="form-control mb-4">
+                        <label className="label">
+                            <span className="label-text">Author Photo</span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder=""
+                            className="input input-bordered w-full"
+                            defaultValue={user.photoURL}
+                            onChange={(e) => setTitle(e.target.value)}
+                            required
+                        />
+                    </div>
 
                     <div className="form-control mt-6">
                         <button type="submit" className="btn btn-primary w-full">
