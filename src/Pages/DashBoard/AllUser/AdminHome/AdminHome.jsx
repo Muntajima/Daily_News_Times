@@ -3,20 +3,23 @@ import AuthContext from "../../../../Context/AuthContext";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { FaNewspaper, FaUser } from "react-icons/fa";
-import { FaPeopleGroup, FaUserGroup } from "react-icons/fa6";
+import { FaPeopleGroup } from "react-icons/fa6";
+import Statistic from "./Statistic";
 
 
 const AdminHome = () => {
     const { user } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
-    console.log(user)
-    const { data: stats } = useQuery({
+    
+    const { refetch, data: stats } = useQuery({
         queryKey: ['admin-stats'],
         queryFn: async () => {
             const res = await axiosSecure.get('/admin-stats');
             return res.data;
+            
         }
     })
+    refetch();
     return (
         <div>
             <h2 className="text-3xl pl-8 pt-8">
@@ -25,7 +28,7 @@ const AdminHome = () => {
                     user?.name ? user.name : "Back"
                 }
             </h2>
-            <div className="flex justify-evenly pt-8">
+            <div className="lg:flex justify-evenly pt-8">
                 <div className="stats shadow bg-gradient-to-r from-blue-200 via-purple-400 to-pink-500 text-white w-[240px]">
                     <div className="stat text-center">
                         <div className="stat-title flex justify-center items-center gap-4 text-white font-bold text-xl">Total News <FaNewspaper/></div>
@@ -50,6 +53,7 @@ const AdminHome = () => {
                     </div>
                 </div>
             </div>
+            <Statistic/>
         </div>
     );
 };
