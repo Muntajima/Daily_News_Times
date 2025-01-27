@@ -56,7 +56,8 @@ const SignUp = () => {
                             name: name,
                             email: email,
                             photoURL: photo,
-                            password: password
+                            password: password,
+                            firebaseUid: user.uid
                         }
                         axiosPublic.post('/users', userInfo)
                         .then(res =>{

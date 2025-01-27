@@ -1,4 +1,4 @@
-import { FaNewspaper, FaUser } from "react-icons/fa";
+import { FaHome, FaNewspaper, FaUser } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
 
@@ -10,15 +10,18 @@ const Dashboard = () => {
                 <ul className="menu p-4 text-white space-y-2">
                     {
                         isAdmin ? <>
+                            <li><NavLink to='/dashboard/home' className={({ isActive }) =>
+                                isActive ? "text-emerald-300 font-bold" : ""
+                            }><FaHome/> Home</NavLink></li>
                             <li><NavLink to='/dashboard/alluser' className={({ isActive }) =>
                                 isActive ? "text-emerald-300 font-bold" : ""
                             }><FaUser></FaUser> All User</NavLink></li>
                             <li><NavLink to="/dashboard/all-articles" className={({ isActive }) =>
-                    isActive ? "text-emerald-300 font-bold" : ""
-                  }><FaNewspaper></FaNewspaper> All Article</NavLink></li>
+                                isActive ? "text-emerald-300 font-bold" : ""
+                            }><FaNewspaper></FaNewspaper> All Article</NavLink></li>
                             <li><NavLink to='/dashboard/publishers' className={({ isActive }) =>
-                    isActive ? "text-emerald-300 font-bold" : ""
-                  }><FaPeopleGroup></FaPeopleGroup> All Publishers</NavLink></li>
+                                isActive ? "text-emerald-300 font-bold" : ""
+                            }><FaPeopleGroup></FaPeopleGroup> All Publishers</NavLink></li>
                         </> :
                             <>
                             </>

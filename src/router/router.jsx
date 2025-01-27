@@ -1,6 +1,6 @@
 import {
-    createBrowserRouter,
-  } from "react-router-dom";
+  createBrowserRouter,
+} from "react-router-dom";
 import MainLayout from "../Layouts/MainLayout";
 import Home from "../Pages/Home/Home/Home";
 import ContactUs from "../Pages/Home/ContactUs/ContactUs";
@@ -14,57 +14,76 @@ import Dashboard from "../Layouts/Dashboard";
 import AllUser from "../Pages/DashBoard/AllUser/AllUser";
 import AllArticle from "../Pages/DashBoard/AllUser/AllArticle/AllArticle";
 import AllPublishers from "../Pages/DashBoard/AllUser/Publishers/AllPublishers";
+import AllNews from "../Pages/Home/AllNews/AllNews";
+import Details from "../Pages/Details/Details";
+import Payment from "../Pages/Payment/Payment";
 
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <MainLayout/>,
-      errorElement: <ErrorPage/>,
-      children: [
-        {
-            path: '/',
-            element: <Home/>
-        },
-        {
-            path: 'contact-us',
-            element: <ContactUs/>
-        },
-        {
-          path: 'signup',
-          element: <SignUp/>
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '/',
+        element: <Home />
+      },
+      {
+        path: 'contact-us',
+        element: <ContactUs />
+      },
+      {
+        path: 'signup',
+        element: <SignUp />
       },
       {
         path: 'signin',
-        element: <SignIn/>
-    },
-    {
+        element: <SignIn />
+      },
+      {
         path: 'subcription',
-        element: <Subcription/>
-    },
-    {
-      path: 'add-article',
-      element: <PrivateRoute><AddArticle/></PrivateRoute>
+        element: <PrivateRoute><Subcription /></PrivateRoute>
+      },
+      {
+        path: 'payment',
+        element: <Payment />
+      },
+      {
+        path: 'add-article',
+        element: <PrivateRoute><AddArticle /></PrivateRoute>
+      },
+      {
+        path: 'allnews',
+        element: <AllNews />
+      },
+      {
+        path: '/news/:id',
+        element: <PrivateRoute><Details/></PrivateRoute>,
+       },
+    ]
   },
-      ]
-    },
-    {
-      path: 'dashboard',
-      element: <Dashboard/>,
-      children: [
-        {
-          path: 'alluser',
-          element: <AllUser/>
-        },
-        {
-          path: 'all-articles',
-          element: <AllArticle/>
-        },
-        {
-          path: 'publishers',
-          element: <AllPublishers/>
-        }
-      ]
-    }
-  ]);
+  {
+    path: 'dashboard',
+    element: <Dashboard />,
+    children: [
+      {
+        path: 'home',
+        element: <MainLayout />
+      },
+      {
+        path: 'alluser',
+        element: <AllUser />
+      },
+      {
+        path: 'all-articles',
+        element: <AllArticle />
+      },
+      {
+        path: 'publishers',
+        element: <AllPublishers />
+      }
+    ]
+  }
+]);
 
 export default router;

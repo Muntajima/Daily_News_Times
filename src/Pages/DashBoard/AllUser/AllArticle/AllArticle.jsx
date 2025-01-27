@@ -1,9 +1,9 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useContext, useState } from "react";
 import Swal from "sweetalert2";
-import axios from "axios";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import AuthContext from "../../../../Context/AuthContext";
 
 const AllArticle = () => {
     const queryClient = useQueryClient();
@@ -11,21 +11,23 @@ const AllArticle = () => {
   const [declineReason, setDeclineReason] = useState("");
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
+  const { user } = useContext(AuthContext);
+  
 
   // Fetch all articles
-  const { data: articles = [] } = useQuery({
-    queryKey: ['articles'],
+  const { data: news = [] } = useQuery({
+    queryKey: ['news'],
     queryFn: async () => {
-        const { data } = await axiosPublic.get("/articles");
+        const { data } = await axiosPublic.get("/news");
         return data;
   }, 
   });
 
   // Approve an article
   const approveArticle = async (id) => {
-    await axiosSecure.patch(`/articles/${id}/approve`);
+    await axiosSecure.patch(`/news/${id}/approve`);
     Swal.fire("Success", "Article approved successfully!", "success");
-    queryClient.invalidateQueries("articles");
+    queryClient.invalidateQueries(["news"]);
   };
 
   // Decline an article with reason
@@ -34,11 +36,11 @@ const AllArticle = () => {
       Swal.fire("Error", "Please provide a reason for declining the article!", "error");
       return;
     }
-    await axiosPublic.patch(`/articles/${selectedArticle}/decline`, { reason: declineReason });
+    await axiosPublic.patch(`/news/${selectedArticle}/decline`, { reason: declineReason });
     Swal.fire("Success", "Article declined successfully!", "success");
     setSelectedArticle(null);
     setDeclineReason("");
-    queryClient.invalidateQueries("articles");
+    queryClient.invalidateQueries("news");
   };
 
   // Delete an article
@@ -52,17 +54,17 @@ const AllArticle = () => {
     });
 
     if (confirmed.isConfirmed) {
-      await axios.delete(`/articles/${id}`);
+      await axiosSecure.delete(`/news/${id}`);
       Swal.fire("Deleted!", "Article has been deleted.", "success");
-      queryClient.invalidateQueries("articles");
+      queryClient.invalidateQueries("news");
     }
   };
 
   // Make article premium
   const makePremium = async (id) => {
-    await axios.patch(`/articles/${id}/premium`);
+    await axiosSecure.patch(`/news/${id}/premium`);
     Swal.fire("Success", "Article is now premium!", "success");
-    queryClient.invalidateQueries("articles");
+    queryClient.invalidateQueries("news");
   };
     return (
         <div>
@@ -85,14 +87,14 @@ const AllArticle = () => {
             </tr>
           </thead>
           <tbody>
-            {articles.map((article, index) => (
+            {news.map((article, index) => (
               <tr key={article._id}>
                 <td>{index + 1}</td>
                 <td>{article.title}</td>
                 <td>{article.authorName}</td>
                 <td>{article.authorEmail}</td>
                 <td>
-                  <img src={article.authorPhoto} alt="Author" className="w-12 h-12 rounded-full" />
+                  <img src={user?.photoURL} alt="Author" className="w-12 h-12 rounded-full" />
                 </td>
                 <td>{new Date(article.postedDate).toLocaleDateString()}</td>
                 <td>{article.status}</td>
@@ -162,4 +164,4 @@ const AllArticle = () => {
     );
 };
 
-export default AllArticle;<h2 className="text-5xl">all article</h2>
+export default AllArticle;

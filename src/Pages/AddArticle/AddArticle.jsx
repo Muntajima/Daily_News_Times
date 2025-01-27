@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Select from "react-select";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { imageUpload } from "../APIs/utils";
+import AuthContext from "../../Context/AuthContext";
 
 
 const AddArticle = () => {
@@ -13,24 +14,34 @@ const AddArticle = () => {
     const [selectedPublisher, setSelectedPublisher] = useState(null);
     const [selectedTags, setSelectedTags] = useState([]);
     const axiosPublic = useAxiosPublic();
+    const {user} = useContext(AuthContext);
+    console.log(user)
 
     const tagsOptions = [
         { value: "Technology", label: "Technology" },
-        { value: "Health", label: "Health" },
+        { value: "International", label: "International" },
+        { value: "Medicle", label: "Medicle" },
         { value: "Sports", label: "Sports" },
         { value: "Education", label: "Education" },
+        { value: "Business", label: "Business" },
+        { value: "Politics", label: "Politics" },
+        { value: "Environment", label: "Environment"},
+        { value: "Movies", label: "Movies"},
+        { value: "Life and Living", label: "Life & Living" },
     ];
 
     // Fetch all publishers added by admin
     useEffect(() => {
         axiosPublic.get("/publishers")
-            .then((res) => setPublishers(res.data))
+            .then((res) => {setPublishers(res.data)
+                console.log(res.data)
+            })
             .catch((error) => console.error("Error fetching publishers", error));
     }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+      
         if (!title || !image || !selectedPublisher || !description) {
             Swal.fire({
                 title: "Error!",
@@ -52,10 +63,12 @@ const AddArticle = () => {
                 description,
                 status: "pending", // Default status for admin approval
                 date: new Date().toISOString(),
+                authorName: user.name, 
+                authorEmail: user.email
             };
 
             // Post the new article
-            axiosPublic.post("/articles", newArticle)
+            axiosPublic.post("/news", newArticle)
                 .then((res) => {
                     if (res.data.insertedId) {
                         Swal.fire({
@@ -64,7 +77,16 @@ const AddArticle = () => {
                             icon: "success",
                             confirmButtonText: "Cool",
                         });
+                        setTitle("");
+                    setImage(null);
+                    setPublishers([]);
+                    setSelectedPublisher(null);
+                    setSelectedTags([]);
+                    setDescription("");
+                        e.target.reset();
                     }
+                   
+                   
                 })
                 .catch((error) => {
                     console.error("Error submitting article", error);
@@ -166,6 +188,33 @@ const AddArticle = () => {
                             onChange={(e) => setDescription(e.target.value)}
                             required
                         ></textarea>
+                    </div>
+
+                    <div className="form-control mb-4">
+                        <label className="label">
+                            <span className="label-text">Author Name</span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder=""
+                            className="input input-bordered w-full"
+                            defaultValue={user.name}
+                            onChange={(e) => setTitle(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-control mb-4">
+                        <label className="label">
+                            <span className="label-text">Author Email</span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder=""
+                            className="input input-bordered w-full"
+                            defaultValue={user.email}
+                            onChange={(e) => setTitle(e.target.value)}
+                            required
+                        />
                     </div>
 
                     <div className="form-control mt-6">

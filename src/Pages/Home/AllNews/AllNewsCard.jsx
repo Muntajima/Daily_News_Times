@@ -4,7 +4,7 @@ import { Carousel } from 'react-responsive-carousel';
 
 
 const AllNewsCard = ({items}) => {
-    const {_id, title, category, description, image, date, author} = items;
+    const {_id, title, tags, description, image, date, authorName,} = items;
     return (
        
             

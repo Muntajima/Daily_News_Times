@@ -30,7 +30,7 @@ const Navbar = () => {
     const links = <>
         <li><NavLink to='/' className='btn mr-2'>Home</NavLink></li>
         <li><NavLink to='/add-article' className='btn mr-2'>Add Articles</NavLink></li>
-        <NavLink to={'/addItems'} className='btn mr-2'>All Articles</NavLink>
+        <NavLink to={'/allnews'} className='btn mr-2'>All Articles</NavLink>
         <NavLink to={'/category'} className='btn mr-2'>Subcription</NavLink>
         <NavLink to={'/dashboard'} className='btn mr-2'>Dashboard</NavLink>
     </>
@@ -100,7 +100,7 @@ const Navbar = () => {
               
             />
             <div className="absolute bottom-1 right-12 bg-gray-800 text-white text-sm px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
-              {user?.displayName || "No Display Name"}
+              {user?.name || "No Display Name"}
             </div>
 
           </div>

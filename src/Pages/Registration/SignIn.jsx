@@ -54,7 +54,9 @@ const SignIn = () => {
             const userInfo = {
                 email: result.user?.email,
                 name: result.user?.displayName,
-                photoURL: result.user?.photoURL
+                photoURL: result.user?.photoURL,
+                lastLoginAt: result.user?.metadata.lastLoginAt,
+                lastSignInTime: result.user?.metadata.lastSignInTime
             }
             axiosPublic.post('users', userInfo)
             .then(res =>{
