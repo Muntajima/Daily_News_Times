@@ -37,7 +37,7 @@ const MyProfile = () => {
             toast.error(`Error: ${error.message}`);
         }
 
-        const profileResponse = await fetch("http://localhost:5000/users", {
+        const profileResponse = await fetch("https://news-times-server.vercel.app/users", {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",

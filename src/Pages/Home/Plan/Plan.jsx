@@ -4,7 +4,7 @@ import { Slide } from "react-awesome-reveal";
 import { Link } from "react-router-dom";
 const Plan = () => {
     return (
-        <div>
+        <div className="ml-4">
             <h2 className="text-3xl font-bold text-center mt-8 mb-4">Your Favourite Plans</h2>
             <Parallax
         blur={{ min: -50, max: 50 }}

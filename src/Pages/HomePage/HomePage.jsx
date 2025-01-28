@@ -29,7 +29,7 @@ const HomePage = () => {
                 {showModal && (
                     
                     <div
-                    className="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+                    className="modal modal-bottom sm:modal-middle"
                     onClick={closeModal} // Close modal when clicking outside
                 >
                     <div

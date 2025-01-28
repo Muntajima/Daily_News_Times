@@ -31,7 +31,7 @@ const Navbar = () => {
         <li><NavLink to='/' className='btn btn-sm mr-2'>Home</NavLink></li>
         <li><NavLink to='/add-article' className='btn btn-sm mr-2'>Add Articles</NavLink></li>
         <NavLink to={'/allnews'} className='btn btn-sm mr-2'>All Articles</NavLink>
-        <NavLink to={'/category'} className='btn btn-sm mr-2'>Subcription</NavLink>
+        <NavLink to={'/subcription'} className='btn btn-sm mr-2'>Subcription</NavLink>
         
         {
             user && <>
@@ -92,7 +92,7 @@ const Navbar = () => {
                     <div className="flex items-center">
                         <img src={logo} className="w-12 h-9" />
                         <Link to='/'>
-                            <a className="btn btn-ghost text-2xl">Daily News Times</a>
+                            <a className="btn btn-ghost text-2xl mr-8">Daily News Times</a>
                         </Link>
                     </div>
                 </div>
@@ -107,7 +107,7 @@ const Navbar = () => {
           <div className="text-black pr-2 relative group">
             <img
               src={user?.photoURL}
-              className='w-10 h-10 rounded-full cursor-pointer'
+              className='lg:w-10 lg:h-10 w-8 h-8 rounded-full cursor-pointer'
               
             />
             <div className="absolute bottom-1 right-12 bg-gray-800 text-white text-sm px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
@@ -121,7 +121,8 @@ const Navbar = () => {
 
                     {
                         user ? <>
-                            <button onClick={handleLogout} className="btn mr-6">Logout</button>
+                            <button onClick={handleLogout} className="btn mr-20
+                             lg:mr-6">Logout</button>
                         </>
                             :
                             <>

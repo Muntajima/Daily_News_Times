@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const TrandingPost = () => {
     const [news, setNews] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/news')
+        fetch('https://news-times-server.vercel.app/news')
             .then(res => res.json())
             .then(data => {
                 setNews(data.slice(0, 3))
@@ -25,13 +26,13 @@ const TrandingPost = () => {
                         <div className="hero-content text-neutral-content text-center">
                             <div className="max-w-md">
                                 <h1 className="mb-5 text-xl font-bold">{items.title}</h1>
-                                <button className="btn btn-ghost text-sm">View Detail</button>
+                                <Link to={`/news/${items._id}`}><button className="btn btn-ghost text-sm">View Detail</button></Link>
                             </div>
                         </div>
                     </div>
                 </div>)
             }
-            <button className="btn btn-ghost text-sm">See All News</button>
+            <Link to={'/allnews'}><button className="btn btn-ghost text-sm">See All News</button></Link>
         </div>
     );
 };

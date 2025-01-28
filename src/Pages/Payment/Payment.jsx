@@ -43,7 +43,7 @@ const Payment = () => {
         setError("");
 
         try {
-            const response = await fetch(`http://localhost:5000/users/${userId}`, {
+            const response = await fetch(`https://news-times-server.vercel.app/users/${userId}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
