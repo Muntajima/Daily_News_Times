@@ -2,6 +2,7 @@
 import { useContext } from 'react';
 import AuthContext from '../Context/AuthContext';
 import { Navigate, useLocation } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const AdminRouter = ({ children }) => {
     const { user, loading, isAdmin } = useContext(AuthContext);
@@ -13,6 +14,13 @@ const AdminRouter = ({ children }) => {
 
     if (user && isAdmin) {
         return children;
+    }
+    else{
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "You are not Admin!",
+          });
     }
 
     return <Navigate to="/" state={{ from: location }} replace />;

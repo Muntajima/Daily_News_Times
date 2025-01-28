@@ -4,6 +4,7 @@ import AuthContext from './AuthContext';
 import { auth } from '../firebase/firebase.init';
 import { useEffect, useState } from 'react';
 import useAxiosPublic from '../Pages/hooks/useAxiosPublic';
+import { toast } from 'react-toastify';
 //import useAxiosPublic from '../Pages/hooks/useAxiosPublic';
 //import axios from 'axios';
 
@@ -35,9 +36,18 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     }
 
-    const updateUserProfile = (updatedData) => {
-        return updateProfile(auth.currentUser, updatedData);
-    }
+    const updateUserProfile = async (displayName, photoURL) => {
+        setLoading(true);
+        try {
+          await updateProfile(auth.currentUser, { displayName, photoURL });
+          toast.success("Profile updated successfully!");
+        } catch (error) {
+          console.error("Error updating profile:", error.message);
+          toast.error(`Error: ${error.message}`);
+        } finally {
+          setLoading(false);
+        }
+      };
 
     useEffect(() =>{
         const checkAdmin = async() =>{

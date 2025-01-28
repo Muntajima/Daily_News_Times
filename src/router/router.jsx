@@ -18,8 +18,10 @@ import AllNews from "../Pages/Home/AllNews/AllNews";
 import Details from "../Pages/Details/Details";
 import Payment from "../Pages/Payment/Payment";
 import AdminHome from "../Pages/DashBoard/AllUser/AdminHome/AdminHome";
-//import AdminRouter from "./AdminRouter";
-//import AdminRouter from "./AdminRouter";
+import PremiumArticle from "../Pages/PremiumArticle/PremiumArticle";
+import MyProfile from "../Pages/Home/MyProfile/MyProfile";
+import AdminRouter from "./AdminRouter";
+
 
 
 const router = createBrowserRouter([
@@ -64,11 +66,19 @@ const router = createBrowserRouter([
         path: '/news/:id',
         element: <PrivateRoute><Details/></PrivateRoute>,
        },
+       {
+        path: 'premium-article',
+        element: <PrivateRoute><PremiumArticle/></PrivateRoute>,
+       },
+       {
+        path: 'my-profile',
+        element: <PrivateRoute><MyProfile/></PrivateRoute>,
+       }
     ]
   },
   {
     path: 'dashboard',
-    element: <Dashboard />,
+    element: <AdminRouter><Dashboard /></AdminRouter>,
     children: [
       {
         index: true,

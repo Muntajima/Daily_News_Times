@@ -33,6 +33,15 @@ const Navbar = () => {
         <NavLink to={'/allnews'} className='btn mr-2'>All Articles</NavLink>
         <NavLink to={'/category'} className='btn mr-2'>Subcription</NavLink>
         <NavLink to={'/dashboard'} className='btn mr-2'>Dashboard</NavLink>
+        {
+            user && <>
+            <li><NavLink to='/premium-article' className='btn mr-2'>Premium Article</NavLink></li>
+            <li><NavLink to='/my-profile' className='btn mr-2'>MyProfile</NavLink></li>
+            </> 
+            
+           
+
+        }
     </>
 
     return (
