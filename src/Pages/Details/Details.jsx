@@ -60,9 +60,6 @@ const Details = () => {
             <h3><strong>Publisher:</strong> {news.publisher}</h3>
             <div><strong>Tags:</strong> {news.tags}</div>
           </div>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Listen</button>
-          </div>
         </div>
       </div>
     </div>
