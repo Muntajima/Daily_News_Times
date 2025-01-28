@@ -4,7 +4,7 @@ import AuthContext from './AuthContext';
 import { auth } from '../firebase/firebase.init';
 import { useEffect, useState } from 'react';
 import useAxiosPublic from '../Pages/hooks/useAxiosPublic';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 //import useAxiosPublic from '../Pages/hooks/useAxiosPublic';
 //import axios from 'axios';
 
@@ -31,9 +31,11 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
-    const userLogout = () => {
+    const userLogout = async () => {
         setLoading(true);
-        return signOut(auth);
+        await signOut(auth);
+        setUser(null);
+        setLoading(false);
     }
 
     const updateUserProfile = async (displayName, photoURL) => {
@@ -59,7 +61,7 @@ const AuthProvider = ({ children }) => {
                     params: {email: user.email}
                 })
                 setIsAdmin(response.data.role === 'admin')
-
+                console.log(isAdmin);
             }
             catch (error) {
                 console.error("Error verifying admin status:", error);
@@ -69,22 +71,40 @@ const AuthProvider = ({ children }) => {
               }
         };
         checkAdmin();
-    }, [user])
+    }, [user, axiosPublic, isAdmin])
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-            if (currentUser) {
-                const userInfo = {
-                    _id: currentUser.uid,
-                    email: currentUser.email,
-                    name: currentUser.displayName || "Anonymous User",
-                    photoURL: currentUser.photoURL || null,
-                };
-                setUser(userInfo)
-            }
-            else {
-                setUser(null); // No user logged in
-            }
+            // if (currentUser) {
+            //     const userInfo = {
+            //         _id: currentUser.uid,
+            //         email: currentUser.email,
+            //         name: currentUser.displayName || "Anonymous User",
+            //         photoURL: currentUser.photoURL || null,
+            //     };
+            //     setUser(userInfo)
+            // }
+            // else {
+            //     setUser(null); // No user logged in
+            // }
+
+            if (currentUser?.email) {
+                setUser(currentUser);
+        
+                const userInfo = { email: currentUser.email };
+                await axiosPublic.post('/jwt', userInfo)
+                  .then(res => {
+                    if (res.data.token) {
+                      localStorage.setItem('token', res.data.token);
+                      setLoading(false);
+                    }
+                  })
+        
+        
+              } else {
+                localStorage.removeItem('token');
+                setLoading(false);
+              }
             setLoading(false); // Stop loading
 
 
@@ -128,9 +148,10 @@ const AuthProvider = ({ children }) => {
     }
     return (
         <AuthContext.Provider value={authInfo}>
+            <ToastContainer/>
             {loading ? (
                 <div className="flex items-center justify-center h-screen">
-                    <p>Loading...</p>
+                    <span className="loading loading-dots loading-lg"></span>
                 </div>
             ) : (
                 children

@@ -28,15 +28,17 @@ const Navbar = () => {
     }
 
     const links = <>
-        <li><NavLink to='/' className='btn mr-2'>Home</NavLink></li>
-        <li><NavLink to='/add-article' className='btn mr-2'>Add Articles</NavLink></li>
-        <NavLink to={'/allnews'} className='btn mr-2'>All Articles</NavLink>
-        <NavLink to={'/category'} className='btn mr-2'>Subcription</NavLink>
-        <NavLink to={'/dashboard'} className='btn mr-2'>Dashboard</NavLink>
+        <li><NavLink to='/' className='btn btn-sm mr-2'>Home</NavLink></li>
+        <li><NavLink to='/add-article' className='btn btn-sm mr-2'>Add Articles</NavLink></li>
+        <NavLink to={'/allnews'} className='btn btn-sm mr-2'>All Articles</NavLink>
+        <NavLink to={'/category'} className='btn btn-sm mr-2'>Subcription</NavLink>
+        
         {
             user && <>
-            <li><NavLink to='/premium-article' className='btn mr-2'>Premium Article</NavLink></li>
-            <li><NavLink to='/my-profile' className='btn mr-2'>MyProfile</NavLink></li>
+            <NavLink to={'/dashboard'} className='btn btn-sm mr-2'>Dashboard</NavLink>
+            <li><NavLink to='/premium-article' className='btn btn-sm mr-2'>Premium Article</NavLink></li>
+            <li><NavLink to='/my-profile' className='btn btn-sm mr-2'>My Profile</NavLink></li>
+            <li><NavLink to='/my-article' className='btn btn-sm mr-2'>My Articles</NavLink></li>
             </> 
             
            
@@ -109,7 +111,7 @@ const Navbar = () => {
               
             />
             <div className="absolute bottom-1 right-12 bg-gray-800 text-white text-sm px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
-              {user?.name || "No Display Name"}
+              {user?.displayName || "No Display Name"}
             </div>
 
           </div>

@@ -1,9 +1,8 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import AuthContext from "../../../../Context/AuthContext";
 import { MdDeleteForever } from "react-icons/md";
 import { FcApprove } from "react-icons/fc";
 import { FcDisapprove } from "react-icons/fc";
@@ -14,8 +13,7 @@ const AllArticle = () => {
   const [declineReason, setDeclineReason] = useState("");
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
-  const { user } = useContext(AuthContext);
-  console.log(user)
+
 
   // Fetch all articles
   const { data: news = [] } = useQuery({

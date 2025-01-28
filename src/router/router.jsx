@@ -20,7 +20,9 @@ import Payment from "../Pages/Payment/Payment";
 import AdminHome from "../Pages/DashBoard/AllUser/AdminHome/AdminHome";
 import PremiumArticle from "../Pages/PremiumArticle/PremiumArticle";
 import MyProfile from "../Pages/Home/MyProfile/MyProfile";
-import AdminRouter from "./AdminRouter";
+import MyArticle from "../Pages/Home/MyArticle/MyArticle";
+import UpdateMyArticle from "../Pages/Home/UpdateArticle/UpdateMyArticle";
+//import AdminRouter from "./AdminRouter";
 
 
 
@@ -73,12 +75,20 @@ const router = createBrowserRouter([
        {
         path: 'my-profile',
         element: <PrivateRoute><MyProfile/></PrivateRoute>,
+       },
+       {
+        path: 'my-article',
+        element: <PrivateRoute><MyArticle/></PrivateRoute>,
+       },
+       {
+        path: 'update-article/:id',
+        element: <PrivateRoute><UpdateMyArticle/></PrivateRoute>,
        }
     ]
   },
   {
     path: 'dashboard',
-    element: <AdminRouter><Dashboard /></AdminRouter>,
+    element: <Dashboard />,
     children: [
       {
         index: true,

@@ -13,7 +13,7 @@ const SignUp = () => {
     const style = {
         height: 500,
     }
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
 
     const axiosPublic = useAxiosPublic();
     const {
@@ -33,7 +33,7 @@ const SignUp = () => {
 
         if (!passwordRegex.test(password)) {
             //setError(false);
-            toast.error("Must have an uppercase, a lowercase, and atleast six characters.")
+            toast.error("Must have an uppercase, a lowercase, a special character, a number, and atleast six characters.")
             return;
         }
         else {

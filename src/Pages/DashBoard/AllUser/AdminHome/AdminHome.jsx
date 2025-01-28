@@ -25,7 +25,7 @@ const AdminHome = () => {
             <h2 className="text-3xl pl-8 pt-8">
                 <span>Hi, Welcome </span>
                 {
-                    user?.name ? user.name : "Back"
+                    user?.displayName ? user.displayName : "Back"
                 }
             </h2>
             <div className="lg:flex justify-evenly pt-8">
