@@ -22,12 +22,21 @@ const AdminHome = () => {
     refetch();
     return (
         <div>
+            <div className="bg-green-300 flex justify-between px-4"> 
             <h2 className="text-3xl pl-8 pt-8">
                 <span>Hi, Welcome </span>
                 {
                     user?.displayName ? user.displayName : "Back"
                 }
             </h2>
+            <div className="flex gap-4 justify-center items-center">
+                <img src={user.photoURL} className="w-28 h-28 my-4 rounded-full" />
+                <div className="font-semibold">
+                    <h3>{user.displayName}</h3>
+                    <p>{user.email}</p>
+                </div>
+            </div>
+            </div>
             <div className="lg:flex justify-evenly pt-8">
                 <div className="stats shadow bg-gradient-to-r from-blue-200 via-purple-400 to-pink-500 text-white w-[240px]">
                     <div className="stat text-center">

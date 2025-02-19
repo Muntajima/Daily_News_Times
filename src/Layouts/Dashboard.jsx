@@ -14,9 +14,13 @@ const Dashboard = () => {
                 <ul className="menu p-4 text-white space-y-2">
                 {
                     user ? 
+                    <>
+                    <div className="w-32"><img src={user.photoURL} alt="" /></div>
                     <li><NavLink to='/' className={({ isActive }) =>
                         isActive ? "text-emerald-300 font-bold" : ""
-                    }><FaHome/> Home</NavLink></li> :
+                    }><FaHome/> Home</NavLink></li>
+                    </>
+                     :
                     <></>
                 }
                     {
