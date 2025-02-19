@@ -1,5 +1,5 @@
 import { Parallax } from "react-parallax";
-import HomeNewsCard from "../AllNews/HomeNewsCard";
+//import HomeNewsCard from "../AllNews/HomeNewsCard";
 import { Slide } from "react-awesome-reveal";
 import { Link } from "react-router-dom";
 const Plan = () => {

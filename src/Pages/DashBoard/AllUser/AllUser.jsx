@@ -9,13 +9,15 @@ import { toast } from "react-toastify";
 //     PaginationLink,
 //     PaginationNext,
 //     PaginationPrevious,
-// } from "@/components/ui/pagination";
+//   } from "@/components/ui/pagination"
+
+import { useState } from "react";
 
 
 const AllUser = () => {
     const axiosSecure = useAxiosSecure();
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [usersPerPage] = useState(5);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [usersPerPage] = useState(5);
     const { data: users = [] } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
@@ -35,11 +37,11 @@ const AllUser = () => {
         }
     }
 
-    // const indexOfLastUser = currentPage * usersPerPage;
-    // const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    // const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+    const indexOfLastUser = currentPage * usersPerPage;
+    const indexOfFirstUser = indexOfLastUser - usersPerPage;
+    const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
 
-    // const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
     return (
         <div>
             <h2 className='text-5xl text-center underline my-12'>Manage All Users</h2>
@@ -65,7 +67,7 @@ const AllUser = () => {
                             </tr>
                         </thead>
                         {
-                            users.map(user =>
+                            currentUsers.map(user =>
                                 <tbody>
                                     {/* row 1 */}
                                     <tr>
@@ -111,34 +113,34 @@ const AllUser = () => {
                         }
 
                     </table>
-
-                    {/* <Pagination>
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious
-              onClick={() => paginate(currentPage - 1)}
-              disabled={currentPage === 1}
-            />
-          </PaginationItem>
-          {Array.from({ length: Math.ceil(users.length / usersPerPage) }, (_, index) => (
-            <PaginationItem key={index + 1}>
-              <PaginationLink
-                href="#"
-                onClick={() => paginate(index + 1)}
-                className={currentPage === index + 1 ? "bg-blue-500 text-white" : ""}
-              >
-                {index + 1}
-              </PaginationLink>
-            </PaginationItem>
-          ))}
-          <PaginationItem>
-            <PaginationNext
-              onClick={() => paginate(currentPage + 1)}
-              disabled={currentPage === Math.ceil(users.length / usersPerPage)}
-            />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination> */}
+{/* 
+                    <Pagination>
+                        <PaginationContent>
+                            <PaginationItem>
+                                <PaginationPrevious
+                                    onClick={() => paginate(currentPage - 1)}
+                                    disabled={currentPage === 1}
+                                />
+                            </PaginationItem>
+                            {Array.from({ length: Math.ceil(users.length / usersPerPage) }, (_, index) => (
+                                <PaginationItem key={index + 1}>
+                                    <PaginationLink
+                                        href="#"
+                                        onClick={() => paginate(index + 1)}
+                                        className={currentPage === index + 1 ? "bg-blue-500 text-white" : ""}
+                                    >
+                                        {index + 1}
+                                    </PaginationLink>
+                                </PaginationItem>
+                            ))}
+                            <PaginationItem>
+                                <PaginationNext
+                                    onClick={() => paginate(currentPage + 1)}
+                                    disabled={currentPage === Math.ceil(users.length / usersPerPage)}
+                                />
+                            </PaginationItem>
+                        </PaginationContent>
+                    </Pagination> */}
                 </div>
 
 
