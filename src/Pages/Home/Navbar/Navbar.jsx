@@ -108,7 +108,7 @@ const Navbar = () => {
                     <div className="flex items-center">
                         <img src={logo} className="w-12 h-9" />
                         <Link to='/'>
-                            <a className="btn btn-ghost text-2xl mr-8">Daily News Times</a>
+                            <a className="btn btn-ghost text-2xl mr-4">Daily News Times</a>
                         </Link>
                     </div>
                 </div>
