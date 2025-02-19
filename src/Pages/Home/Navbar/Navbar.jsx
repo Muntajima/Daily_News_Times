@@ -32,7 +32,7 @@ const Navbar = () => {
         <li><NavLink to='/add-article' className='btn btn-sm mr-2'>Add Articles</NavLink></li>
         <NavLink to={'/allnews'} className='btn btn-sm mr-2'>All Articles</NavLink>
         <NavLink to={'/subcription'} className='btn btn-sm mr-2'>Subcription</NavLink>
-        <NavLink><div className="dropdown">
+        {/* <NavLink><div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-sm mr-2">Categories</div>
             <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                 <li><a>Technology</a></li>
@@ -46,19 +46,25 @@ const Navbar = () => {
                 <li><a>Movies</a></li>
                 <li><a>Life and Living</a></li>
             </ul>
-        </div></NavLink>
+        </div></NavLink> */}
         <NavLink to={'/dashboard'} className='btn btn-sm mr-2'>Dashboard</NavLink>
-        <NavLink to={'/dashboard'} className='btn btn-sm mr-2'>News Videos</NavLink>
 
         {
             user && <>
-                <li><NavLink to='/premium-article' className='btn btn-sm mr-2'>Premium Article</NavLink></li>
-                <li><NavLink to='/my-profile' className='btn btn-sm mr-2'>My Profile</NavLink></li>
-                <li><NavLink to='/my-article' className='btn btn-sm mr-2'>My Articles</NavLink></li>
+                <ul className="menu-dropdown-togglemenu-sm w-32 btn btn-sm mr-2">
+                    <li>
+                        <details open>
+                            <summary>{user.displayName}</summary>
+                            <ul>
+                                <li><NavLink to='/premium-article' className='btn btn-sm mr-2'>Premium Article</NavLink></li>
+                                <li><NavLink to='/my-profile' className='btn btn-sm mr-2'>My Profile</NavLink></li>
+                                <li><NavLink to='/my-article' className='btn btn-sm mr-2'>My Articles</NavLink></li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+
             </>
-
-
-
         }
     </>
 
