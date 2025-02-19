@@ -15,7 +15,7 @@ const HomeNewsCard = () => {
 
                     {/*  image  */}
                     <img
-                        src="https://i.ibb.co.com/WzhZXws/inter1.webp"
+                        src="https://i.ibb.co.com/1YCmcrhF/climat.jpg"
                         className="w-full h-full object-cover group-hover:scale-[1.1] transition-all duration-700" />
 
                     {/*  text  */}
@@ -87,7 +87,7 @@ const HomeNewsCard = () => {
 
                     {/*  image  */}
                     <img
-                        src="https://i.ibb.co.com/qJSMc1y/politc2.jpg"
+                        src="https://i.ibb.co.com/svJNHw6M/trump.webp"
                         className="w-full h-full object-cover group-hover:scale-[1.1] transition-all duration-700" />
 
                     {/*  text  */}

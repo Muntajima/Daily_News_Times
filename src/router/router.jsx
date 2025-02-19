@@ -22,6 +22,7 @@ import PremiumArticle from "../Pages/PremiumArticle/PremiumArticle";
 import MyProfile from "../Pages/Home/MyProfile/MyProfile";
 import MyArticle from "../Pages/Home/MyArticle/MyArticle";
 import UpdateMyArticle from "../Pages/Home/UpdateArticle/UpdateMyArticle";
+import NewsVideos from "@/Pages/Home/NewsVideos/NewsVideos";
 //import AdminRouter from "./AdminRouter";
 
 
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: 'subcription',
         element: <PrivateRoute><Subcription /></PrivateRoute>
+      },
+      {
+        path: 'news-videos',
+        element: <NewsVideos />
       },
       {
         path: 'payment',

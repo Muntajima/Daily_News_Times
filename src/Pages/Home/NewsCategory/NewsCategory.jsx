@@ -3,7 +3,7 @@ import Marquee from "react-fast-marquee";
 const NewsCategory = () => {
     return (
         <div>
-            <Marquee autoFill={true} className="pt-24">
+            <Marquee autoFill={true} className="pt-12">
                 <h3 className="mr-12 border-2 border-black w-44 text-center px-8 py-2">International</h3>
                 <h3 className="mr-12 border-2 border-black w-44 text-center py-2">Business</h3>
                 <h3 className="mr-12 border-2 border-black w-44 px-8 py-2 text-center">Politics</h3>

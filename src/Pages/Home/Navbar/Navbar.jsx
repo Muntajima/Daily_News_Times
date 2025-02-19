@@ -32,16 +32,32 @@ const Navbar = () => {
         <li><NavLink to='/add-article' className='btn btn-sm mr-2'>Add Articles</NavLink></li>
         <NavLink to={'/allnews'} className='btn btn-sm mr-2'>All Articles</NavLink>
         <NavLink to={'/subcription'} className='btn btn-sm mr-2'>Subcription</NavLink>
-        
+        <NavLink><div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-sm mr-2">Categories</div>
+            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                <li><a>Technology</a></li>
+                <li><a>Medical</a></li>
+                <li><a>International</a></li>
+                <li><a>Sports</a></li>
+                <li><a>Education</a></li>
+                <li><a>Business</a></li>
+                <li><a>Politics</a></li>
+                <li><a>Environment</a></li>
+                <li><a>Movies</a></li>
+                <li><a>Life and Living</a></li>
+            </ul>
+        </div></NavLink>
+        <NavLink to={'/dashboard'} className='btn btn-sm mr-2'>Dashboard</NavLink>
+        <NavLink to={'/dashboard'} className='btn btn-sm mr-2'>News Videos</NavLink>
+
         {
             user && <>
-            <NavLink to={'/dashboard'} className='btn btn-sm mr-2'>Dashboard</NavLink>
-            <li><NavLink to='/premium-article' className='btn btn-sm mr-2'>Premium Article</NavLink></li>
-            <li><NavLink to='/my-profile' className='btn btn-sm mr-2'>My Profile</NavLink></li>
-            <li><NavLink to='/my-article' className='btn btn-sm mr-2'>My Articles</NavLink></li>
-            </> 
-            
-           
+                <li><NavLink to='/premium-article' className='btn btn-sm mr-2'>Premium Article</NavLink></li>
+                <li><NavLink to='/my-profile' className='btn btn-sm mr-2'>My Profile</NavLink></li>
+                <li><NavLink to='/my-article' className='btn btn-sm mr-2'>My Articles</NavLink></li>
+            </>
+
+
 
         }
     </>
@@ -66,7 +82,7 @@ const Navbar = () => {
                     </button>
                 </div>
             </div>
-            <div className="max-w-7xl mx-auto navbar bg-base-100 border-b fixed z-10 top-16 start-">
+            <div className="max-w-7xl mx-auto navbar bg-base-100 fixed z-10 top-16">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -103,21 +119,21 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     <div>
-                    {user &&
-          <div className="text-black pr-2 relative group">
-            <img
-              src={user?.photoURL}
-              className='lg:w-10 lg:h-10 w-8 h-8 rounded-full cursor-pointer'
-              
-            />
-            <div className="absolute bottom-1 right-12 bg-gray-800 text-white text-sm px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
-              {user?.displayName || "No Display Name"}
-            </div>
+                        {user &&
+                            <div className="text-black pr-2 relative group">
+                                <img
+                                    src={user?.photoURL}
+                                    className='lg:w-10 lg:h-10 w-8 h-8 rounded-full cursor-pointer'
 
-          </div>
-        }
+                                />
+                                <div className="absolute bottom-1 right-12 bg-gray-800 text-white text-sm px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
+                                    {user?.displayName || "No Display Name"}
+                                </div>
+
+                            </div>
+                        }
                     </div>
-                    
+
 
                     {
                         user ? <>
