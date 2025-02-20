@@ -67,7 +67,14 @@ const SignIn = () => {
         })
     }
     return (
-        <div className="hero bg-base-200 min-h-screen">
+        <div>
+            <div className="bg-gradient-to-r from-blue-300 via-blue-600 to-gray-800 text-white text-center py-24 rounded-lg shadow-lg">
+                <h2 className="font-semibold text-2xl pb-4">Credential Login</h2>
+                <Link to='/admin-login'><button className="btn w-32 btn-ghost">Credencial with admin</button></Link>
+                <Link to='/user-login'><button className="btn w-32 btn-ghost">Credencial with user</button></Link>
+                <Link to='/premium-login'><button className="btn w-32 btn-ghost">Credencial with premium user</button></Link>
+            </div>
+            <div className="hero bg-base-200 min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <p className="py-6">
@@ -80,6 +87,7 @@ const SignIn = () => {
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                     <p className="text-blue-600 text-sm text-center mt-12">Welcome back!</p>
                 <h1 className="ml-20 text-4xl mt-2 font-bold">Member Login</h1>
+            
                     <form onSubmit={handleLogin} className="card-body">
                         <div className="form-control">
                             <label className="label">
@@ -113,6 +121,8 @@ const SignIn = () => {
                 </div>
             </div>
         </div>
+        </div>
+        
     );
 };
 

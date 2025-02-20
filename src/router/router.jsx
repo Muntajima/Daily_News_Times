@@ -23,6 +23,9 @@ import MyProfile from "../Pages/Home/MyProfile/MyProfile";
 import MyArticle from "../Pages/Home/MyArticle/MyArticle";
 import UpdateMyArticle from "../Pages/Home/UpdateArticle/UpdateMyArticle";
 import NewsletterUptodate from "../Pages/Home/Newsletter/NewsletterUptodate";
+import AdminLogin from "../Pages/Registration/adminLogin";
+import PremiumLogin from "../Pages/Registration/PremiumLogin";
+import UserLogin from "../Pages/Registration/UserLogin";
 //import AdminRouter from "./AdminRouter";
 
 
@@ -48,6 +51,18 @@ const router = createBrowserRouter([
       {
         path: 'signin',
         element: <SignIn />
+      },
+      {
+        path: 'admin-login',
+        element: <AdminLogin />
+      },
+      {
+        path: 'user-login',
+        element: <UserLogin />
+      },
+      {
+        path: 'premium-login',
+        element: <PremiumLogin />
       },
       {
         path: 'subcription',
